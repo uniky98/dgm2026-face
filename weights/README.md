@@ -8,7 +8,7 @@ weights/network-snapshot-001360.pkl
 
 Specs:
 - file size: ~283 MB
-- sha256: (filled in at release time)
+- sha256: 3ae93262fd3614ea679235510d6243c5aeeccfedcfe264d8380405ac27ca00f0
 - format: standard `pickle` produced by NVlabs/stylegan3 `train.py` (cfg=stylegan2, cbase=16384)
 - resolution: 256x256
 - conditioning: unconditional
