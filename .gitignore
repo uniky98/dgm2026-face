@@ -14,3 +14,9 @@ stylegan3/
 # Local feature cache
 *.npz
 .DS_Store
+main.aux
+main.log
+main.out
+main.bbl
+main.blg
+main.synctex.gz
