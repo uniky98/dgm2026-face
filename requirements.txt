@@ -1,0 +1,21 @@
+# DGM Spring 2026 Face Generation Challenge — Team Ikkyum_Kim
+# Minimal runtime dependencies to reproduce the 1000-image submission.
+
+# Core deep learning
+--index-url https://download.pytorch.org/whl/cu124
+torch==2.6.0+cu124
+torchvision==0.21.0+cu124
+
+# StyleGAN2/3 runtime
+--index-url https://pypi.org/simple
+click==8.4.1
+pillow==12.2.0
+numpy==2.4.4
+scipy==1.17.1
+ninja==1.13.0
+imageio==2.37.3
+requests==2.34.2
+tqdm==4.67.3
+
+# pkg_resources legacy compat (StyleGAN3 imports it)
+setuptools<81

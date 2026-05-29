@@ -1,0 +1,16 @@
+# Outputs
+out/
+*.zip
+__pycache__/
+*.pyc
+
+# Local-only artefacts
+weights/*.pkl
+!weights/README.md
+
+# StyleGAN3 vendored source (downloaded at build time by Dockerfile)
+stylegan3/
+
+# Local feature cache
+*.npz
+.DS_Store
