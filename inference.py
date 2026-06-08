@@ -5,7 +5,7 @@ Bit-identical reproduction of the 1000-image submission.
 
 Pipeline:
   1. Load the fine-tuned StyleGAN2 checkpoint
-     (SG2-CelebA-HQ-256 → CelebV-HQ noalign, kimg 1360, psi=0.9).
+     (SG2-CelebA-HQ-256 → CelebV-HQ noalign, continuation kimg 2720, psi=0.9).
   2. Read the 1000 selection seeds from seeds.json. Those seeds are the
      output of mean-FID-greedy applied to the 10,000-seed candidate pool
      [20260610, 20270609].
@@ -15,7 +15,7 @@ The generation pipeline mirrors NVlabs/stylegan3 `gen_images.py` byte-for-byte
 so that `verify_reproducibility.sh` succeeds against the original submission.
 
 Usage:
-    python inference.py --weights weights/network-snapshot-001360.pkl \\
+    python inference.py --weights weights/network-snapshot-002720.pkl \\
                         --seeds   seeds.json \\
                         --outdir  out
 """
@@ -32,7 +32,7 @@ import torch
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--weights", required=True, help="path to network-snapshot-001360.pkl")
+    ap.add_argument("--weights", required=True, help="path to network-snapshot-002720.pkl")
     ap.add_argument("--seeds",   required=True, help="path to seeds.json")
     ap.add_argument("--outdir",  required=True, help="output dir for PNGs")
     ap.add_argument("--trunc",   type=float, default=0.9, help="truncation psi")

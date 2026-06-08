@@ -52,7 +52,7 @@ ENV TORCH_CUDA_ARCH_LIST="8.0;9.0"
 
 # Default: regenerate the 1000 submission images.
 CMD ["python", "inference.py", \
-     "--weights", "weights/network-snapshot-001360.pkl", \
+     "--weights", "weights/network-snapshot-002720.pkl", \
      "--seeds",   "seeds.json", \
      "--outdir",  "out", \
      "--stylegan3-repo", "stylegan3"]

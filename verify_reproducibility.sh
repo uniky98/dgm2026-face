@@ -6,7 +6,7 @@
 #   ./verify_reproducibility.sh WEIGHTS ORIG_ZIP SG3_REPO
 #
 # Defaults (relative to this script's dir):
-#   WEIGHTS  = weights/network-snapshot-001360.pkl
+#   WEIGHTS  = weights/network-snapshot-002720.pkl
 #   ORIG_ZIP = submission.zip
 #   SG3_REPO = stylegan3            (cloned by Dockerfile or git-clone manually)
 #
@@ -16,7 +16,7 @@ set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 cd "$HERE"
 
-WEIGHTS="${1:-weights/network-snapshot-001360.pkl}"
+WEIGHTS="${1:-weights/network-snapshot-002720.pkl}"
 ORIG_ZIP="${2:-submission.zip}"
 SG3_REPO="${3:-stylegan3}"
 
