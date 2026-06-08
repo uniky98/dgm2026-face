@@ -72,11 +72,13 @@ repeat 4 passes, random order over the 1000:
 ### Results (local 4-metric vs leaderboard, single submission)
 | | FID | KID | IS | TopPR |
 |---|---|---|---|---|
-| local 32550 seed 0 | 29.60 | 0.000354 | 4.65 | 0.78 (lib f1) |
-| leaderboard | 30.13 | 0.0009 | 4.78 | 0.8272 |
+| local 32550 seed 0 (kimg-1360) | 29.60 | 0.000354 | 4.65 | 0.78 (lib f1) |
+| leaderboard (kimg-1360, mean-FID) | 30.13 | 0.0009 | 4.78 | 0.8272 |
+| **leaderboard (final, kimg-2720 cont.)** | **29.06** | **0.0009** | **5.07** | **0.8441** |
 | 1st place (Sangwon) | 28.97 | 0.0017 | 4.66 | 0.8368 |
 
-→ **IS and KID rank-1 in the cohort.** FID rank-2, TopPR rank ~8.
+→ **IS and KID rank-1 in the cohort.** FID rank-2 (by 0.09); the continuation
+checkpoint lifts TopPR from rank ~9 to rank ~6 → **#1 overall by average rank.**
 
 ## §6 Ablations & sensitivity (≤ 0.5 p)
 - Pool size: 10k pool ≫ random 1k baseline (FID 35.12 vs 29.60).

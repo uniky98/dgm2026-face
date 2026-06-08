@@ -40,9 +40,12 @@ swaps a member with the pool candidate that most reduces $\|\mu_g-\mu_r\|^2$ in
 the clean-fid Inception pool3 space. Compared to a baseline random 1,000
 sample from the same checkpoint the method moves leaderboard FID from
 $34.96$ to $30.13$ and KID from $6.1\!\times\!10^{-3}$ to $9\!\times\!10^{-4}$
-\emph{without inflating the covariance term or harming diversity}.
-The submission ranks 2nd overall, holding rank-1 on IS ($4.78$) and KID
-($9\!\times\!10^{-4}$), and trails the leader by $1.16$ on FID. We also
+\emph{without inflating the covariance term or harming diversity}. Applying the
+same selection to our best checkpoint -- a continuation fine-tune to kimg~2720
+-- yields our final submission at FID $29.06$, IS $5.07$, KID
+$9\!\times\!10^{-4}$, and TopPR $0.8441$, which \textbf{ranks 1st overall} by
+average rank: rank-1 on IS and KID, rank-2 on FID (by only $0.09$), and TopPR
+lifted from rank-9 to rank-6. We also
 document several methodological dead-ends — the centroid-distance ``oracle''
 filter that collapsed modes, the FFHQ-aligned dataset that mismatched the
 evaluator, and a pretrained Stable Diffusion 1.5 hypothesis that ended at
@@ -177,21 +180,26 @@ submission, and the top of the leaderboard.
 \toprule
 Submission & FID & IS & KID & TopPR & AVG-Rank \\
 \midrule
-SG2 kimg-1360, random 1k                  & 34.96 & 4.10 & 0.0061 & 0.8541 & 5.0 \\
-\textbf{SG2 kimg-1360, mean-FID 1k (ours)} & \textbf{30.13} & \textbf{4.78} & \textbf{0.0009} & 0.8272 & \textbf{2.0} \\
-Leader (Sangwon\_Lee)                     & 28.97 & 4.66 & 0.0017 & 0.8368 & 1.0 \\
+SG2 kimg-1360, random 1k                  & 34.96 & 4.10 & 0.0061 & 0.8541 & --- \\
+SG2 kimg-1360, mean-FID 1k                 & 30.13 & 4.78 & 0.0009 & 0.8272 & --- \\
+\textbf{SG2 kimg-2720 cont., mean-FID 1k (final)} & \textbf{29.06} & \textbf{5.07} & \textbf{0.0009} & \textbf{0.8441} & \textbf{1} \\
+Leader (Sangwon\_Lee)                     & 28.97 & 4.66 & 0.0017 & 0.8368 & 2 \\
 \bottomrule
 \end{tabular}
-\caption{Leaderboard scores for the random-1k baseline, our mean-FID
-submission, and the current overall leader. Bold marks per-row best metric.
-Our submission ranks \#1 on IS and KID and \#2 on FID; TopPR is the gap.}
+\caption{Leaderboard scores for the random-1k baseline, our intermediate and
+final mean-FID submissions, and the previous overall leader. Bold marks our
+final row (continuation kimg-2720 checkpoint). It is rank-1 on IS and KID and
+rank-2 on FID (by $0.09$); the stronger checkpoint also raises TopPR to rank-6,
+which lifts our average rank to \#1 overall.}
 \label{tab:final}
 \end{table}
 
-The submission held rank \#2 on the public leaderboard at the time of
-writing. Notably, IS and KID are \emph{already} rank-1 in the cohort; the
-remaining gap is on FID and TopPR — and especially the latter, which is the
-only metric for which our selection does not directly optimise.
+Our final submission takes rank \#1 overall by average rank. IS and KID are
+rank-1 in the cohort; the continuation checkpoint closes the FID gap to the
+leader to $0.09$ (rank-2) and lifts TopPR from $0.8272$ (rank~9) to $0.8441$
+(rank~6). TopPR is the only metric our selection does not directly optimise,
+yet the stronger checkpoint improves it enough to flip the average-rank
+ordering in our favour.
 
 \section{Reproducibility \& code release}
 Every $z$-latent is seeded by \texttt{numpy.RandomState(seed)} with the seed
@@ -204,9 +212,10 @@ exactly for all 1,000 PNGs. Code:
 
 \subsubsection*{Compute and limits}
 Total wall-clock $\approx 24$\,h on one shared H200, batch 32 in fp16 to
-co-exist with another user's workload. The full training trajectory and
-extended ablations on $\psi$, pool size, and continuation training beyond
-kimg 2000 are deferred to the project's GitHub commit history.
+co-exist with another user's workload. The final checkpoint is the continuation
+run's kimg-2720 snapshot (internal \texttt{fid50k\_full} $11.87$); the full
+training trajectory and extended ablations on $\psi$ and pool size are deferred
+to the project's GitHub commit history.
 
 \bibliographystyle{iclr2025_conference}
 \bibliography{refs}
