@@ -39,6 +39,11 @@ Output: 1000 PNGs in `./out/`, byte-identical to the leaderboard submission.
 
 ### Bare-metal (no Docker)
 
+> **Prerequisite:** a CUDA **12.4 dev toolkit** (with `nvcc`) and `gcc`/`g++` ≤ 13
+> on `PATH`, with `CUDA_HOME` pointing at the toolkit. StyleGAN's custom ops
+> JIT-compile CUDA at first run; without `nvcc` the build fails. The Docker path
+> bundles this via the `-devel` base image — prefer Docker if unsure.
+
 ```bash
 pip install -r requirements.txt
 pip install "setuptools<81"

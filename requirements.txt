@@ -1,13 +1,17 @@
 # DGM Spring 2026 Face Generation Challenge — Team Ikkyum_Kim
 # Minimal runtime dependencies to reproduce the 1000-image submission.
+#
+# Install:  pip install -r requirements.txt
+# The +cu124 torch/torchvision wheels resolve from the PyTorch extra index
+# below; every other package comes from the default PyPI index.
 
-# Core deep learning
---index-url https://download.pytorch.org/whl/cu124
+--extra-index-url https://download.pytorch.org/whl/cu124
+
+# Core deep learning (cu124 build)
 torch==2.6.0+cu124
 torchvision==0.21.0+cu124
 
 # StyleGAN2/3 runtime
---index-url https://pypi.org/simple
 click==8.4.1
 pillow==12.2.0
 numpy==2.4.4

@@ -8,7 +8,11 @@
 #       dgm2026-face
 # Output: 1000 PNGs in ./out matching the leaderboard submission bit-for-bit.
 
-FROM nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04
+# NOTE: the -devel (not -runtime) base ships nvcc + CUDA dev headers/libs, so
+# StyleGAN's custom ops JIT-compile to the SAME CUDA kernels used to generate the
+# submission. This is required for bit-identical reproduction (the -runtime base
+# lacks nvcc and cannot build the ops).
+FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
